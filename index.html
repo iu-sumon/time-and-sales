@@ -1,0 +1,4125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="custom-style.css">
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <style>
+      .time-sale-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      .data_table {
+        white-space: nowrap;
+        font-size: 0.69rem;
+        width: 100%;
+        margin-bottom: 30px;
+      }
+      .gridtab {
+        border: 1px solid var(--tab-active-font-color);
+        border-bottom: 0px;
+      }
+      .tab-border-left {
+        border-left: 1px solid var(--tab-active-font-color);
+      } 
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="row pl-1 pt-1">
+        <div class="col-12">
+          <div
+            class="nav nav-tabs d-flex align-items-center navbar-fixed-top"
+            id="nav-tab"
+            role="tablist" 
+          >
+            <div>
+              <select id="exchange_timesale_table_1" class="md_exch time-sales-select" placeholder="">
+                <option selected="" value="DSE">DSE</option>
+                <option value="CSE">CSE</option>
+              </select>
+            </div>
+            <button
+              class="web-tp-button active"
+              id="nav-ts-list-tab"
+              data-toggle="tab"
+              href="#nav-ts"
+              role="tab"
+              aria-controls="nav-ts"
+              aria-selected="true"
+              style="padding: 0px 23px"
+            >
+              Time &amp; Sale
+            </button>
+            <button
+              class="web-tp-button"
+              id="nav-pt-list-tab"
+              data-toggle="tab"
+              href="#nav-pt"
+              role="tab"
+              aria-controls="nav-pt"
+              aria-selected="false"
+              style="padding: 0px 28px"
+            >
+              Price Table
+            </button>
+            <div class="pl-2">
+              <input
+                id="symbol_timesale_table_1"
+                placeholder="Search Symbol"
+                class="timesale_symbol_name searchbox-timeandsales symbol_input ui-autocomplete-input"
+                type="text"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <div class="tab-content" id="nav-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="nav-ts"
+              role="tabpanel"
+              aria-labelledby="nav-ts-list-tab"
+            >
+              <div class="protected time-sale-container">
+                <table id="ts_{{table_id}}" class="data_table">
+                  <thead
+                    style="position: sticky; top: 38px; background: var(--bg-color)"
+                  >
+                    <tr class="text-center">
+                      <th class="timeAndsales-fast-column-name">Time</th>
+                      <th class="timeAndsales-buy-sell-column-name">Buy/Sell</th>
+                      <th class="timeAndsales-quantity-column-name">Quantity</th>
+                      <th class="timeAndsales-price-column-name">Price</th>
+                      <th class="timeAndsales-last-column-name">NT</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+      
+            <div
+              class="tab-pane fade"
+              id="nav-pt"
+              role="tabpanel"
+              aria-labelledby="nav-pt-list-tab"
+            >
+            <div class="web-tsp-col-pad">
+             
+              <div class="navbar-fixed-top-second">
+                <div class="row">
+                  <div class="col-8 d-flex align-items-center p-2">
+                    <span class="ml-2">Last</span>
+                    <span class="ml-2 mr-2">
+                      <select name="" id="" class="price-table-select">
+                        <option value="">N</option>
+                        <option value="">5</option>
+                        <option value="">7</option>
+                        <option value="">15</option>
+                        <option value="">30</option>
+                        <option value="">60</option>
+                        <option value="">90</option>
+                        <option value="">180</option>
+                        <option value="">270</option>
+                        <option value="">300</option>
+                      </select>
+                    </span>
+                    <span>Working days</span>
+                  </div>
+                  <div class="col-4"></div>
+              </div>
+                  <div class="row mt-2 mb-1 col-pad">
+                      <div class="col web-price-table-col-title">
+                      Avg Price:
+                      <div class="web-price-table-col-value">63.0</div>
+                      </div>
+                      <div class="col web-price-table-col-title">
+                      Max Price:
+                      <div class="web-price-table-col-value">78.0</div>
+                      </div>
+                      <div class="col web-price-table-col-title">
+                      Min Price:
+                      <div class="web-price-table-col-value">52.0</div>
+                      </div>
+                      <div class="col web-price-table-col-title">
+                      Change
+                      <div class="web-price-table-col-value">+23.5</div>
+                      </div>
+                  </div>
+                  <div class="row mt-2 mb-1 col-pad">
+                      <div class="col web-price-table-col-title">
+                      Avg Price:
+                      <div class="web-price-table-col-value">2,467,313</div>
+                      </div>
+                      <div class="col web-price-table-col-title">
+                      Max Volume:
+                      <div class="web-price-table-col-value">5,978,236</div>
+                      </div>
+                      <div class="col web-price-table-col-title">
+                      Min Volume:
+                      <div class="web-price-table-col-value">302,237</div>
+                      </div>
+                      <div class="col web-price-table-col-title">
+                      Change(%):
+                      <div class="web-price-table-col-value">+43.0%</div>
+                      </div>
+                  </div>
+              </div>
+               <!-- <table></table> -->
+            <div
+            class="web-price-table"
+            id="scrolling-container-income-statement-annual"
+            style="display: block"
+          >
+            <table
+              class="web-price-data-table"
+              id="scrolling-container-income-statement-annual-table"
+            >
+             <thead style="background:var(--bg-color);">
+              <tr class="web-price-table-row navbar-fixed-top-seconds">
+                  <th class="web-price-table-row-first">Date</th>
+                  <th class="web-price-table-row-column long">Close</th>
+                  <th class="web-price-table-row-column long">Volume</th>
+                  <th class="web-price-table-row-column long">Change</th>
+                  <th class="web-price-table-row-column long">Ch(%)</th>
+                  <th class="web-price-table-row-column long">Value(cr)</th>
+                  <th class="web-price-table-row-column long">Trade</th>
+                  <th class="web-price-table-row-column long">Open</th>
+                  <th class="web-price-table-row-column long">High</th>
+                  <th class="web-price-table-row-column long">Low</th>
+                </tr>
+             </thead>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+              <tr class="web-price-table-row">
+                <td class="web-price-table-row-first">
+                  <span class="">30-Jan-23</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">68.00</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">21216.1</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">0.88</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">1.19%</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">1018.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">16351</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">71.9</span>
+                </td>
+                <td class="web-price-table-row-column long">
+                  <span class="">72.67</span>
+                </td>
+      
+                <td class="web-price-table-row-column long">
+                  <span class="">63.5</span>
+                </td>
+              </tr>
+               
+            </table>
+          </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+      integrity="sha512-k2WPPrSgRFI6cTaHHhJdc8kAXaRM4JBFEDo1pPGGlYiOyv4vnA0Pp0G5XMYYxgAPmtmv/IIaQA6n5fLAyJaFMA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
