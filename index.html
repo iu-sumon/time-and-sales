@@ -122,18 +122,12 @@
                   <div class="col-8 d-flex align-items-center p-2">
                     <span class="ml-2">Last</span>
                     <span class="ml-2 mr-2">
-                      <select name="" id="" class="price-table-select">
-                        <option value="">N</option>
-                        <option value="">5</option>
-                        <option value="">7</option>
-                        <option value="">15</option>
-                        <option value="">30</option>
-                        <option value="">60</option>
-                        <option value="">90</option>
-                        <option value="">180</option>
-                        <option value="">270</option>
-                        <option value="">300</option>
+                      <select name="" id="" class="price-table-select" onchange="set_updated_limit(this.value)">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
                       </select>
+                      
                     </span>
                     <span>Working days</span>
                   </div>
@@ -4121,5 +4115,7 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+    <!-- <script src="app.js"></script> -->
+    <script src="app_test.js"></script>
   </body>
 </html>
