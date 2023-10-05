@@ -54,12 +54,13 @@ function setTr() {
     `;
 
   // Remove excess rows if there are more than the selected limit
+  table_tbody.prepend(newRow);
+
   console.log(selectedLimit)
-  var excessRows = table_tbody.find("tr").slice(selectedLimit - 1);
+  var excessRows = table_tbody.find("tr").slice(selectedLimit);
   excessRows.remove();
 
   // Append the new row to the selected <tbody> element
-  table_tbody.prepend(newRow);
 }
 
 setInterval(setTr, 3000);
