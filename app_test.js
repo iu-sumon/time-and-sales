@@ -5,6 +5,16 @@ function set_updated_limit(value) {
   selectedLimit = parseInt(value);
 }
 
+// Get the <select> element by its class name
+// var selectElement = document.querySelector('.order_terminal_limit');
+
+// // Get the selected value of the <select> element
+// var selectedValue = selectElement.value;
+
+// // Log the selected value to the console
+// console.log(selectedValue);
+
+
 function setTr() {
   function getRandomColor() {
     var letters = "0123456789ABCDEF";
@@ -19,7 +29,7 @@ function setTr() {
   var randomColor = getRandomColor();
 
   var newRow = `
-    <tr class="web-price-table-row" style="  background-color: ${randomColor};"> 
+    <tr class="web-price-table-row" style="  background-color: ${randomColor}; color: #fff !important"> 
       <td class="web-price-table-row-first">
         <span class="">30-Jan-23</span>
       </td>
