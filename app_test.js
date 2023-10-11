@@ -1,3 +1,29 @@
+$(document).ready(function() {
+  $("#margin_client_select").select2({ 
+      placeholder: "Select Client Code",
+      allowClear: false
+  });
+  $("#margin_client").val($("#margin_client_select").children("option:selected").val());
+  
+  $("#margin_client_select").on("change", function(e) {
+      var selected_client_code = $(this).val();
+      $("#margin_client").val(selected_client_code);
+  });
+
+  $("#client_group_select").select2({ 
+      placeholder: "Select Client Group",
+      allowClear: false
+  });
+  $("#client_group").val($("#client_group_select").children("option:selected").val());
+  
+  $("#client_group_select").on("change", function(e) {
+      var selected_client_code = $(this).val();
+      $("#client_group").val(selected_client_code);
+  });
+})
+
+
+
 var table_tbody = $("#scrolling-container-income-statement-annual-table tbody");
 var selectedLimit = 5; // Default selected limit
 
@@ -73,4 +99,102 @@ function setTr() {
   // Append the new row to the selected <tbody> element
 }
 
-setInterval(setTr, 3000);
+// setInterval(setTr, 3000);
+
+function setupPagination(tableId, rowsPerPage) {
+  const table = document.getElementById(tableId);
+  const tableRows = table.querySelectorAll('tbody tr');
+  const pagination = document.getElementById('pagination');
+  const prevPageButton = document.createElement('a');
+  const nextPageButton = document.createElement('a');
+
+  let currentPage = 1;
+  const maxRows = rowsPerPage;
+
+  // Calculate the number of pages
+  const totalPages = Math.ceil(tableRows.length / maxRows);
+
+  // Function to display the table rows for the current page
+  function displayRows() {
+    const start = (currentPage - 1) * maxRows;
+    const end = start + maxRows;
+
+    tableRows.forEach((row, index) => {
+      if (index >= start && index < end) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    updatePaginationLinks();
+  }
+
+  // Function to update the pagination links
+  function updatePaginationLinks() {
+    // Generate pagination links
+    const pageLinks = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+      pageLinks.push(`<a href="#" class="${currentPage === i ? 'active' : ''}" data-page="${i}">${i}</a>`);
+    }
+
+    pagination.innerHTML = '';
+    pagination.appendChild(prevPageButton);
+    pagination.innerHTML += pageLinks.join('');
+    pagination.appendChild(nextPageButton);
+
+    // Hide the "Previous" button on the first page
+    if (currentPage === 1) {
+      prevPageButton.style.display = 'none';
+    } else {
+      prevPageButton.style.display = 'inline';
+    }
+
+    // Hide the "Next" button on the last page
+    if (currentPage === totalPages) {
+      nextPageButton.style.display = 'none';
+    } else {
+      nextPageButton.style.display = 'inline';
+    }
+  }
+
+  // Initialize with the first page
+  displayRows();
+
+  // Handle page link click event
+  pagination.addEventListener('click', (e) => {
+ 
+    if (e.target.tagName === 'A') {
+      currentPage = parseInt(e.target.getAttribute('data-page'), 10);
+      displayRows();
+    }
+  });
+
+  // Handle previous page button click
+  prevPageButton.href = '#';
+  prevPageButton.innerHTML = '&laquo;';
+  prevPageButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentPage > 1) {
+      currentPage--;
+      displayRows();
+    }
+  });
+
+  // Handle next page button click
+  nextPageButton.href = '#';
+  nextPageButton.innerHTML = '&raquo;';
+  nextPageButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentPage < totalPages) {
+      currentPage++;
+      displayRows();
+    }
+  })
+  
+  // Initially hide the "Previous" button
+  prevPageButton.style.display = 'none';
+}
+
+setupPagination('group-client-table', 10);
