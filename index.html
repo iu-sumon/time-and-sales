@@ -35,29 +35,48 @@
       .tab-border-left {
         border-left: 1px solid var(--tab-active-font-color);
       } 
+    }
+ #pagination
+ {
+    background-color: #e6e6e6;
+    padding: 1px 6px;
+    border-radius: 5px;
+ }
 
-      .pagination {
+ #pagination-config
+ {
+    background-color: #e6e6e6;
+    padding: 1px 6px;
+    border-radius: 5px;
+ }
+
+.pagination {
   display: inline-block;
 }
 
-.pagination a {
-    color: #eee;
-    float: left;
-    padding: 3px 14px;
-    text-decoration: none;
-    border: 1px solid black;
-    border-radius: 5px;
-}
 .pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 5px;
+    background-color: #6c9ce6;
+    color: #000;
+    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+ 
+.pagination a {
+    color: #212529;
+    float: left;
+    padding: 3px 10px;
+    text-decoration: none;
+    border: 1px solid #bec2c7;
+    border-radius: 5px;
 }
 
 .pagination a:hover:not(.active) {
-  background-color: #333131;
-  border-radius: 5px;
-} 
+    background-color: #d7d5d5;
+    border-radius: 5px;
+}
  
 .button-add {
     background-color: #0497ec;
@@ -113,16 +132,30 @@
         position: sticky;
         top: -1px;
     }
-    .table th {
-    padding: 0.7rem 0.7rem 0.7rem 0.2rem !important;
-    vertical-align: top !important;
-    /* border-top: 1px solid #dee2e6; */
-}
-    .table td {
-    padding: 0.2rem !important;
-    vertical-align: top !important;
-    /* border-top: 1px solid #dee2e6; */
-}
+    #group-client-table th {
+    padding: 0.7rem 0.7rem 0.7rem 0.2rem !important; 
+    font-size: .8rem !important;
+    border-top: none !important;
+   }
+   #group-client-table td {
+    padding: 0.2rem !important; 
+    font-size: .8rem !important;
+    border-top: none !important;
+    }
+   #config-symbol-table th {
+    padding: 0.5rem 0.5rem 0.5rem 0.3rem!important;
+    font-size: .8rem!important;
+    border-top: none!important;
+   }
+   #config-symbol-table td {
+    padding: 0.3rem!important;
+    font-size: .8rem!important;
+    border-top: none!important;
+  }
+  #group-client-table tr:nth-of-type(odd) {
+    background-color: var(--tr-odd-bg);  
+ }
+  
     </style>
   </head>
   <body>
@@ -141,13 +174,13 @@
               </select>
             </div>
             <button
-              class="web-tp-button active"
+              class="web-tp-button"
               id="nav-ts-list-tab"
               data-toggle="tab"
               href="#nav-ts"
               role="tab"
               aria-controls="nav-ts"
-              aria-selected="true"
+              aria-selected="false"
               style="padding: 0px 23px"
             >
               Time &amp; Sale
@@ -164,6 +197,18 @@
             >
               Price Table
             </button>
+            <button
+              class="web-tp-button active"
+              id="nav-pt-list-tab-1"
+              data-toggle="tab"
+              href="#nav-pt-1"
+              role="tab"
+              aria-controls="nav-pt-1"
+              aria-selected="true"
+              style="padding: 0px 28px"
+            >
+              Test table
+            </button>
             <div class="pl-2">
               <input
                 id="symbol_timesale_table_1"
@@ -176,12 +221,12 @@
           </div>
           <div class="tab-content" id="nav-tabContent">
             <div
-              class="tab-pane fade show active"
+              class="tab-pane fade "
               id="nav-ts"
               role="tabpanel"
               aria-labelledby="nav-ts-list-tab"
             >
-            <div class="row justify-content-center">
+            <div class="row d=flex flex-column justify-content-center align-items-center">
               <div
                 class="col-8 p-0 mt-5"
                 style="border: 1px solid #213549 !important"
@@ -190,14 +235,14 @@
                   <div
                     style="
                       display: grid;
-                      grid-template-columns: 257px 552px 200px;
+                      grid-template-columns: 1fr 1fr .5fr;
                       align-items: center;
                       padding: 10px;
                     "
                   >
                     <div class="row justify-content-center align-items-center">
                       <label
-                        class="col-sm-2 p-0 col-form-label col-form-label-sm text-center"
+                        class="col-sm-2 p-0 col-form-label col-form-label-sm text-center" style="font-size: 12px;"
                         >Group:</label
                       >
                       <div class="col-sm-8 p-0">
@@ -210,10 +255,10 @@
                     </div>
                     <div class="row justify-content-center align-items-center">
                       <label
-                        class="col-sm-2 p-0 col-form-label col-form-label-sm text-center"
+                        class="col-sm-2 p-0 col-form-label col-form-label-sm text-center" style="font-size: 12px;"
                         >Client:</label
                       >
-                      <div class="col-sm-8 p-0" style="margin-left:-25px;">
+                      <div class="col-sm-8 p-0" style="margin-left:-0.2rem;">
                         <select
                           multiple
                           id="margin_client_select"
@@ -302,6 +347,92 @@
                             <span>34569</span>
                             <span>34569</span>
                             <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                          </div>
+                        </td>
+                        <td class="text-center">
+                          <a
+                            class="button-edit btn-info"
+                            title=""
+                            href="#"
+                            data-original-title="Edit This Record"
+                          >
+                            <i class="fa fa-edit"></i>
+                          </a>
+                          <a
+                            class="button-edit btn-danger"
+                            title=""
+                            href="#"
+                            data-original-title="Delete This Record"
+                            ><i class="fa fa-trash"></i
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>B</td>
+                        <td>
+                          <div>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                              <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
                           </div>
                         </td>
                         <td class="text-center">
@@ -364,56 +495,6 @@
                             <span>34569</span>
                             <span>34569</span>
                             <span>34569</span>
-                          </div>
-                        </td>
-                        <td class="text-center">
-                          <a
-                            class="button-edit btn-info"
-                            title=""
-                            href="#"
-                            data-original-title="Edit This Record"
-                          >
-                            <i class="fa fa-edit"></i>
-                          </a>
-                          <a
-                            class="button-edit btn-danger"
-                            title=""
-                            href="#"
-                            data-original-title="Delete This Record"
-                            ><i class="fa fa-trash"></i
-                          ></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>B</td>
-                        <td>
-                          <div>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
-                            <span>34569</span>
                             <span>34569</span>
                             <span>34569</span>
                             <span>34569</span>
@@ -450,6 +531,18 @@
                         <td>B</td>
                         <td>
                           <div>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
+                            <span>34569</span>
                             <span>34569</span>
                             <span>34569</span>
                             <span>34569</span>
@@ -3489,16 +3582,17 @@
                      
                     </tbody>
                   </table>
-                </div>
-                <div
-                  id="pagination"
-                  class="pagination d-flex justify-content-center align-items-center"
-                ></div>
+                </div> 
               </div>
+              <div  class="pagination d-flex justify-content-center align-items-center mt-3" >
+                  <div id="pagination">
+
+                  </div>
+                </div>
             </div>
             </div> 
             <div
-              class="tab-pane fade"
+              class="tab-pane fade "
               id="nav-pt"
               role="tabpanel"
               aria-labelledby="nav-pt-list-tab"
@@ -7474,6 +7568,326 @@
             </table>
           </div>
             </div>
+          </div>
+          <div  class="tab-pane fade show active"
+          id="nav-pt-1"
+          role="tabpanel"
+          aria-labelledby="nav-pt-list-tab-1">
+          <div class="row justify-content-center">
+            <div class="col-8 p-0 mt-5" style="border: 1px solid #213549!important;"> 
+              <form>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    align-items: center;
+                    padding: 10px;
+                  "
+                >
+                  <div class="row justify-content-center align-items-center">
+                    <label
+                      class="col-sm-2 p-0 pr-2 text-right" style="font-size: 12px;"
+                      >Title:</label
+                    >
+                    <div class="col-sm-8 p-0">
+                      <input
+                        type="text"
+                        class="searchbox"
+                        placeholder="Add New Group Name"
+                      />
+                    </div>
+                  </div>
+                  <div class="row justify-content-center align-items-center">
+                    <label
+                      class="col-sm-2 p-0 pr-2 text-right" style="font-size: 12px;"
+                      >Client:</label
+                    >
+                    <div class="col-sm-8 p-0">
+                      <select
+                        multiple
+                        id="margin_client_select-1"
+                        name="margin_client_select-1"
+                        placeholder="Select Client Code"
+                        class="form-control"
+                      >
+                        <option value="option1">234463</option>
+                        <option value="option2">329874</option>
+                        <option value="option3">329875</option>
+                        <option value="option1">329876</option>
+                        <option value="option2">329877</option>
+                        <option value="option3">329878</option>
+                        <option value="option1">329878</option>
+                        <option value="option2">329879</option>
+                        <option value="option3">329880</option>
+                      </select>
+                    </div>
+                    <input
+                      id="margin_client-1"
+                      value=""
+                      type="hidden"
+                      name="margin_client-1"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="row justify-content-center align-items-center">
+                    <label
+                      class="col-sm-2 p-0 pr-2 text-right" style="font-size: 12px;"
+                      >Category:</label
+                    >
+                    <div class="col-sm-8 p-0">
+                      <select class="searchbox">
+                        <option value="a">A</option>
+                        <option value="b">B</option>
+                        <option value="g">G</option>
+                        <option value="z">Z</option>
+                        <option value="n">N</option>
+                      </select> 
+                    </div>
+                  </div>
+                  <div class="row justify-content-center align-items-center pt-3"> 
+                    <label class="col-sm-2 p-0 pr-4 text-right" style="font-size: 12px;">PE:</label>
+                    <div class="row d-flex justify-content-center align-items-center col-sm-8 p-0 ">   
+                     <div class="col-6 p-0 pr-1">
+                      <select class="searchbox">
+                        <option value="a">Equal</option>
+                        <option value="b">Less than </option>
+                        <option value="g">Above</option> 
+                      </select> 
+                    
+                    </div>
+                    <div class="col-6 p-0 pl-1"> 
+                      <input type="text" class="searchbox" value="30.474"> 
+                    </div> 
+                    </div> 
+                  </div>
+                  <div class="row justify-content-center align-items-center pt-3">
+                    <label
+                      class="col-sm-2 p-0 pr-2 text-right" style="font-size: 12px;"
+                      >F Sell(%):</label
+                    >
+                    <div class="col-sm-8 p-0">
+                      <input
+                      type="text"
+                      class="searchbox"
+                      placeholder="Add New Group Name"
+                    />
+                    </div>
+                  
+                  </div>
+                  <div class="row justify-content-center align-items-center pt-3">
+                    <button class="button-add">Add</button>
+                  </div>
+                </div>
+              </form>
+                
+                <div class=" d-flex justify-content-around table-header-container">
+                    <table class="table table-dark w-100">
+                        <thead class="table-header-margin">
+                          <tr>
+                            <th>Ttile</th>
+                            <th class="col-2">PE</th>
+                            <th>Category</th> 
+                            <th>Client Group</th> 
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Config 1</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 2</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 3</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>Config 4</td>
+                            <td>34.74</td>
+                            <td>A</td>
+                            <td>B</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                            </td> 
+                          </tr>
+                        </tbody>
+                      </table>
+                </div> 
+                   
+            </div>
+        </div>
           </div>
           </div>
         </div>

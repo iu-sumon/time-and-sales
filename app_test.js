@@ -1,26 +1,5 @@
-$(document).ready(function() {
-  $("#margin_client_select").select2({ 
-      placeholder: "Select Client Code",
-      allowClear: false
-  });
-  $("#margin_client").val($("#margin_client_select").children("option:selected").val());
-  
-  $("#margin_client_select").on("change", function(e) {
-      var selected_client_code = $(this).val();
-      $("#margin_client").val(selected_client_code);
-  });
 
-  $("#client_group_select").select2({ 
-      placeholder: "Select Client Group",
-      allowClear: false
-  });
-  $("#client_group").val($("#client_group_select").children("option:selected").val());
-  
-  $("#client_group_select").on("change", function(e) {
-      var selected_client_code = $(this).val();
-      $("#client_group").val(selected_client_code);
-  });
-})
+
 
 
 
@@ -100,11 +79,38 @@ function setTr() {
 }
 
 // setInterval(setTr, 3000);
+$(document).ready(function() {
+  $("#margin_client_select").select2({ 
+      placeholder: "Select Client Code",
+      allowClear: false
+  });
+  $("#margin_client").val($("#margin_client_select").children("option:selected").val());
+  
+  $("#margin_client_select").on("change", function(e) {
+      var selected_client_code = $(this).val();
+      $("#margin_client").val(selected_client_code);
+  });
 
-function setupPagination(tableId, rowsPerPage) {
+  $("#margin_client_select-1").select2({ 
+      placeholder: "Select Client Code",
+      allowClear: false
+  });
+  $("#margin_client-1").val($("#margin_client_select-1").children("option:selected").val());
+  
+  $("#margin_client_select-1").on("change", function(e) {
+      var selected_client_code = $(this).val();
+      $("#margin_client-1").val(selected_client_code);
+  });
+
+  
+})
+
+
+function setupPagination(tableId,paginationId, rowsPerPage) {
+
   const table = document.getElementById(tableId);
   const tableRows = table.querySelectorAll('tbody tr');
-  const pagination = document.getElementById('pagination');
+  const pagination = document.getElementById(paginationId);
   const prevPageButton = document.createElement('a');
   const nextPageButton = document.createElement('a');
 
@@ -197,4 +203,5 @@ function setupPagination(tableId, rowsPerPage) {
   prevPageButton.style.display = 'none';
 }
 
-setupPagination('group-client-table', 10);
+setupPagination('group-client-table', 'pagination', 10);
+setupPagination('config-symbol-table','pagination-config', 100);
