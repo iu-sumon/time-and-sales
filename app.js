@@ -95,3 +95,5 @@ table_tbody.prepend(newRow);
 //         removeOldTickerElement();
 //     },20000)
 //  }
+
+web-price-table-row-first
